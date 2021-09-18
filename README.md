@@ -13,3 +13,6 @@ The interview stage in ITRex Group
 5. Please check how soring in columns works, it works incorrectly right now.
 6. Please get rid of the empty page in your pagination.
 
+# Demo
+
+Demo version project is here [VIEW DEMO](https://reactjs-test-task-itrex-group.firebaseapp.com/).
