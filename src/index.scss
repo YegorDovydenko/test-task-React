@@ -81,58 +81,87 @@ input{
     }
     
   }
-}
-.paginationNav{
-  text-align: left;
-
-  .pagination{
-    margin: 20px 0;
-    display: flex;
-    align-items: center;
+  .paginationNav{
+    text-align: left;
   
-    h3{
-      margin: 0;
-    }
-    
-    ul{
+    .pagination{
+      margin: 20px 0;
       display: flex;
-      margin: 0;
-      padding-left: 15px;
+      align-items: center;
+    
+      h3{
+        margin: 0;
+      }
+      
+      ul{
+        display: flex;
+        margin: 0;
+        padding-left: 15px;
+    
+        li{
+          display: inherit;
+          background-color: #f5f5f5;
+          border: 1px solid #ccc;
+          box-shadow: 1px 1px 3px #ccc;      
+          list-style: none;
+          padding: 0;
+    
+          &:hover{
+            background-color: #e6e6e6;
+            cursor: pointer;
+          }
+    
+          a{
+            text-decoration: none;
+            color: black;
+            font-weight: 600;
+            padding: 4px 10px;
   
-      li{
-        background-color: #f5f5f5;
-        border: 1px solid #ccc;
-        box-shadow: 1px 1px 3px #ccc;      
-        list-style: none;
-        padding: 5px 10px;
-  
-        &:hover{
-          background-color: #e6e6e6;
-          cursor: pointer;
+            &.active{
+              background-color: #e6e6e6;
+            }
+          }
         }
+      }
+    }
   
-        a{
-          text-decoration: none;
-          color: black;
-          font-weight: 600;
-        }
+    button{
+      padding: 5px 25px;
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      box-shadow: 1px 1px 3px #ccc;
+      font-weight: 600;      
+  
+      &:hover{
+        background-color: #e6e6e6;
+        cursor: pointer;
       }
     }
   }
 
-  button{
-    padding: 5px 25px;
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 3px #ccc;
-    font-weight: 600;      
+  .stateSelect{
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
 
-    &:hover{
-      background-color: #e6e6e6;
+    h3{
+      margin-right: 15px;
+    }
+
+    select{
       cursor: pointer;
+      padding: 10px 15px;
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      box-shadow: 1px 1px 3px #ccc;
+
+      &:hover{
+        background-color: #e6e6e6;
+      }
     }
   }
 }
+
 
 .info{
   width: 100%;

@@ -16,11 +16,9 @@ function App() {
   // Pagination consts -----------------------------------------------
   const [currentPage, setCurrentPage] = useState(1)
   const [usersPerPage] = useState(20)
+  const [stateCount, setStateCount] = useState([])
 
   const submitInput = (event) => {
-    if (event.key !== "Enter") {
-      return
-    }
     setUsers([])
     setSelectUser([])
     setCurrentPage(1)
@@ -30,11 +28,13 @@ function App() {
         const newUsers = [];
         for (let value of result) {
           if (value.firstName.includes(event.target.value)) {
-            newUsers.push(value);
+            newUsers.push(value)
+            setStateCount(pv => [...pv, value.adress.state])
           }
         }
         setUsers((pv) => [...pv, ...newUsers])
       })
+      console.log(stateCount)
   }
 
   const chooseUser = (event) => {
@@ -180,20 +180,35 @@ function App() {
     }
   }
 
+  const selectByState = (event) => {
+    setUsers([])
+    setSelectUser([])
+    setCurrentPage(1)
+    fetch(apiLink)
+      .then((res) => res.json())
+      .then((result) => {
+        const newUsers = [];
+        for (let value of result) {
+          if (value.adress.state.includes(event.target.value)) {
+            newUsers.push(value);
+          }
+        }
+        setUsers((pv) => [...pv, ...newUsers])
+      })
+  }
+
   // Pagination functions --------------------------------------------
 
   const lastUsersPage = currentPage * usersPerPage
   const firstUsersPage = lastUsersPage - usersPerPage
   const currentUsersPage = users.slice(firstUsersPage, lastUsersPage)
+  const pages = Math.ceil(users.length / usersPerPage)
 
   const paginate = (pageNumber) => {setCurrentPage(pageNumber)}
-  const nextPage = () => setCurrentPage(pv => pv + 1)
-  const prevPage = () => setCurrentPage(pv => pv - 1)
-
 
   return(
     <>
-      <input type="text" placeholder="Name search" onKeyPress={submitInput}/>
+      <input type="text" placeholder="Name search" onChange={submitInput}/>
       {
         users.length === 0
         ?
@@ -205,17 +220,31 @@ function App() {
               usersPerPage={usersPerPage} 
               allElements={users.length}
               paginate={paginate}
+              pages={pages}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
             />
-            {
-              users.length > usersPerPage
-              ?
-              <>
-                <button onClick={prevPage}>Prev</button>
-                <button onClick={nextPage}>Next</button>
-              </>
-              :
-              null
-            }
+          </div>
+          <div className="stateSelect">
+            <h3>Filter by State</h3>
+            <select onChange={selectByState}>
+              {
+                [...new Set(stateCount)]
+                  .sort((a, b) => {
+                    if (a> b) {return 1}
+                    else if (a < b) {return -1}
+                    return 0
+                  })
+                  .map((user, index) => {
+                    console.log(user);
+                    return (
+                      <option key={index} value={user}>
+                        {user}
+                      </option>
+                    )
+                  })
+              }
+            </select>
           </div>
           <table>
             <tbody>
@@ -226,6 +255,7 @@ function App() {
                 sortByEmail={sortByEmail} 
                 sortByPhone={sortByPhone} 
                 sortByState={sortByState} 
+                setSortElemtns={setSortElemtns}
               />
               <Users 
                 users={currentUsersPage} 
