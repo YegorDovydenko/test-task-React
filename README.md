@@ -1,17 +1,13 @@
-# Test task - ITRex Group
-
-The interview stage in ITRex Group
-
-# Stage 2 - bug fix
+# Users List App
 
 ### Completed:
 
-1. Data appearing only after 'enter' key is clicked on search.
-2. In some cases after clicking on pagination tabs data is disappearing
-3. Please add filter by states
-4. Please add a highlight for the active pagination tab
-5. Please check how soring in columns works, it works incorrectly right now.
-6. Please get rid of the empty page in your pagination.
+1. Data appears by entering the user name in the input.
+2. Pagination of pages was made by clicking on the page number or by clicking next/prev.
+3. Added filter by states.
+4. Added a highlight for the active pagination tab.
+5. By clicking on the user's row information about him is displayed under the table.
+6. Added a sorting by columns.
 
 # Demo
 
